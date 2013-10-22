@@ -24,7 +24,6 @@ public class Field {
 	
 	public void checkCollisions()
 	{
-		//ArrayList<Point> newFoodPoints = new ArrayList<Point>();
 		for (int i = 0; i < foodPoints.size(); i++)
 		{
 			if (Point.equalTo(mySnake.getHead(), foodPoints.get(i)))
@@ -51,7 +50,7 @@ public class Field {
 	
 	public void update()
 	{
-		// 1/3 chance of the right one appearing
+		// 1/3 chance of food appearing on a given draw
 
 		checkCollisions();
 		moveField();
