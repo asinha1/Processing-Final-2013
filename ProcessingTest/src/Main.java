@@ -30,6 +30,11 @@ public class Main extends PApplet {
 		if (keyReader.check("D"))
 			myField.mySnake.setDirection(3);
 		myField.drawStuff();
+		if (myField.loss == 1)
+		{
+			Field newField = new Field(this);
+			myField = newField;
+		}
 	}
 	
 	public void keyPressed() {
