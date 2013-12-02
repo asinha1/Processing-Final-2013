@@ -1,9 +1,9 @@
 import processing.core.*;
-import biar.KeyReaderExample.KeyReader;
 
 public class Main extends PApplet {
 	public Field myField;
 	public KeyReader keyReader;
+	
 	
 	public void setup() {
 		noCursor();
@@ -20,6 +20,10 @@ public class Main extends PApplet {
 		
 		//background(0x339900);
 		background(0xffffff);
+		if (keyReader.check("R") && myField.won == 1)
+		{
+			restart();
+		}
 		if (keyReader.check("W"))
 		{
 			myField.mySnake.setDirection(1);
@@ -33,9 +37,14 @@ public class Main extends PApplet {
 		myField.drawStuff();
 		if (myField.loss == 1)
 		{
-			Field newField = new Field(this);
-			myField = newField;
+			restart();
 		}
+	}
+	
+	private void restart()
+	{
+		Field newField = new Field(this);
+		myField = newField;
 	}
 	
 	public void keyPressed() {

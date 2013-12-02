@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import processing.core.*;
+import ddf.minim.*;
 
 public class Field {
 	public PApplet parent;
@@ -11,10 +12,21 @@ public class Field {
 	public int loss;
     ArrayList<Platform> platforms = new ArrayList<Platform>(); 
     ArrayList<Coin> coins = new ArrayList<Coin>(); 
-	
+	public int won;
+	Minim minim;
+	AudioPlayer dieplayer;
+	AudioPlayer coinplayer;
+	AudioInput input;
+    
 	public Field(PApplet parent)
 	{
+		this.won = 0;
 		this.parent = parent;
+		
+		minim = new Minim(parent);
+		dieplayer = minim.loadFile("die.wav");
+		coinplayer = minim.loadFile("coin.wav");
+		
 		mySnake = new Snake(parent, 40, 40);
 		step = 0;
 		loss = 0;
@@ -129,6 +141,7 @@ public class Field {
 		{
 			if (Point.equalTo(mySnake.getHead(), blockPoints.get(i)))
 			{
+				dieplayer.play();
 				return true;
 			}
 		}
@@ -137,10 +150,12 @@ public class Field {
         for (int i = 0; i < platforms.size(); i++) { 
             Platform temp = platforms.get(i); 
             if(((temp.x < mySnake.getHead().x * 8) && (temp.x + temp.w > mySnake.getHead().x * 8)) && 
-                    (temp.y + temp.h > mySnake.getHead().y * 8) && (mySnake.getHead().y * 8 + 8 > temp.y)) 
-                return true; 
-        } 
-		
+                    (temp.y + temp.h > mySnake.getHead().y * 8) && (mySnake.getHead().y * 8 + 8 > temp.y))
+            {
+                dieplayer.play();
+            	return true; 
+            }
+        }
 		return false;
 	}
 	
@@ -151,7 +166,7 @@ public class Field {
             Coin coin = coins.get(i); 
             if ((mySnake.getHead().x * 8 < coin.x + 10 && mySnake.getHead().x * 8 > coin.x - 10) && (mySnake.getHead().y * 8 < coin.y + 10 && mySnake.getHead().y * 8 > coin.y - 10)) 
             {
-            	
+            	coinplayer.play();
             	coins.remove(i); 
             	return;
             }
@@ -211,12 +226,27 @@ public class Field {
 	
 	public void drawStuff()
 	{
-		if (!(mySnake.checkBodyCollision() || mySnake.getHead().outOfBounds() || checkBlockCollision()))
+
+		
+		if (coins.size() == 0)
+		{
+			parent.background(0xffffff);
+			parent.textSize(32);
+			parent.fill(0);
+			parent.text("You win!", 300, 300);
+			parent.text("Final Score:" + mySnake.getScore(), 300, 350);
+			parent.text("Press R to restart",300,400);
+			won = 1;
+		}
+		else if (!(mySnake.checkBodyCollision() || mySnake.getHead().outOfBounds() || checkBlockCollision()))
 		{
 			update();
 			drawFood();
 			drawBlocks();
 			mySnake.display();
+			parent.fill(0);
+			parent.textSize(30);
+			parent.text("Score:" + mySnake.getScore(), 20, 740);
 		}
 		else
 		{

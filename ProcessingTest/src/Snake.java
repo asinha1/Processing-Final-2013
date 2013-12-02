@@ -62,4 +62,8 @@ public class Snake {
 		for (int i = 0; i < body.size(); i++)
 			body.get(i).display(0);
 	}
+	public int getScore()
+	{
+		return body.size() * 10 - 10; 
+	}
 }
