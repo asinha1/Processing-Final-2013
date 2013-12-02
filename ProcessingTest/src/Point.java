@@ -26,7 +26,7 @@ public class Point {
 	
 	public boolean outOfBounds()
 	{
-		return x < 0 || y < 0 || x > 79 || y > 79;
+		return x < 0 || y < 0 || x > 99 || y > 99;
 	}
 	
 }

@@ -6,10 +6,11 @@ public class Main extends PApplet {
 	public KeyReader keyReader;
 	
 	public void setup() {
-		size(640, 640);
+		noCursor();
+		size(800, 800);
 		myField = new Field(this);
 		keyReader = KeyReader.getInstance(this);
-		frameRate(30);
+		frameRate(20);
 	}
 	
 	public void draw() {

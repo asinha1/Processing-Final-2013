@@ -42,6 +42,7 @@ public class Snake {
 		body.add(head);
 		head = newHead;
 	}
+	
 	public boolean checkBodyCollision()
 	{
 		for (int i = 0; i < body.size() - 1; i++)

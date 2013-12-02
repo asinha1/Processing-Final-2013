@@ -14,4 +14,26 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/Coin.java</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Coin.java</locationURI>
+		</link>
+		<link>
+			<name>src/Platform.java</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Platform.java</locationURI>
+		</link>
+		<link>
+			<name>src/PlatformerMain.java</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/PlatformerMain.java</locationURI>
+		</link>
+		<link>
+			<name>src/Player.java</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Player.java</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
