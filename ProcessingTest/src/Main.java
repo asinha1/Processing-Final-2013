@@ -11,6 +11,7 @@ public class Main extends PApplet {
 		myField = new Field(this);
 		keyReader = KeyReader.getInstance(this);
 		frameRate(20);
+		myField.backgroundplayer.play();
 	}
 	
 	public void draw() {

@@ -15,6 +15,7 @@ public class Field {
 	public int won;
 	Minim minim;
 	AudioPlayer dieplayer;
+	public AudioPlayer backgroundplayer;
 	AudioPlayer coinplayer;
 	AudioInput input;
     
@@ -25,8 +26,11 @@ public class Field {
 		
 		minim = new Minim(parent);
 		dieplayer = minim.loadFile("die.wav");
+		dieplayer.setGain((float)-15);
 		coinplayer = minim.loadFile("coin.wav");
-		
+		coinplayer.setGain((float)-15);
+		backgroundplayer = minim.loadFile("DreamSong.mp3");
+		backgroundplayer.setGain(10);
 		mySnake = new Snake(parent, 40, 40);
 		step = 0;
 		loss = 0;
